@@ -1,0 +1,364 @@
+
+<div style="font-family:var(--font-sans);padding-bottom:2rem">
+
+<div style="background:#1D9E75;border-radius:12px;padding:20px 24px;margin-bottom:16px">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <div>
+      <div style="font-size:22px;font-weight:500;color:#fff">Basmati Rice Variety Phenology Repository</div>
+      <div style="font-size:13px;color:#9FE1CB;margin-top:4px">Variety-wise growth stage calendar for remote sensing classification · Kharif season · GI-notified varieties</div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <span style="font-size:11px;padding:3px 10px;border-radius:10px;background:rgba(255,255,255,0.2);color:#fff">Source: IARI · CSSRI · CCS HAU</span>
+        <span style="font-size:11px;padding:3px 10px;border-radius:10px;background:rgba(255,255,255,0.2);color:#fff">Field experiments &amp; peer-reviewed research</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+      <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:8px 14px;text-align:center">
+        <div style="font-size:20px;font-weight:500;color:#fff">7</div>
+        <div style="font-size:10px;color:#9FE1CB">GI varieties</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:8px 14px;text-align:center">
+        <div style="font-size:20px;font-weight:500;color:#fff">115–155d</div>
+        <div style="font-size:10px;color:#9FE1CB">Duration range</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:8px 14px;text-align:center">
+        <div style="font-size:20px;font-weight:500;color:#fff">95–170cm</div>
+        <div style="font-size:10px;color:#9FE1CB">Height range</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:8px 14px;text-align:center">
+        <div style="font-size:20px;font-weight:500;color:#fff">2.12M ha</div>
+        <div style="font-size:10px;color:#9FE1CB">Basmati area</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--color-background-secondary);border-radius:10px;padding:10px 14px;margin-bottom:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+  <span style="font-size:11px;font-weight:500;color:var(--color-text-secondary)">LEGEND:</span>
+  <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--color-text-secondary)"><div style="width:14px;height:10px;border-radius:2px;background:#9FE1CB"></div>Nursery</div>
+  <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--color-text-secondary)"><div style="width:14px;height:10px;border-radius:2px;background:#85B7EB"></div>Vegetative / tillering</div>
+  <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--color-text-secondary)"><div style="width:14px;height:10px;border-radius:2px;background:#AFA9EC"></div>Reproductive (PI)</div>
+  <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--color-text-secondary)"><div style="width:14px;height:10px;border-radius:2px;background:#534AB7"></div>Booting → heading</div>
+  <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--color-text-secondary)"><div style="width:14px;height:10px;border-radius:2px;background:#F0997B"></div>Grain fill → maturity</div>
+  <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--color-text-secondary)"><div style="width:3px;height:14px;border-radius:1px;background:#26215C"></div>50% heading</div>
+  <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--color-text-secondary)"><div style="width:3px;height:14px;border-radius:1px;background:#993C1D"></div>Maturity</div>
+</div>
+
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;align-items:center">
+  <span style="font-size:12px;color:var(--color-text-secondary)">Filter by duration:</span>
+  <button onclick="setF('all')" id="f-all" style="padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:0.5px solid #185FA5;background:#E6F1FB;color:#0C447C">All (7)</button>
+  <button onclick="setF('early')" id="f-early" style="padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary)">Early ≤120 d</button>
+  <button onclick="setF('medium')" id="f-medium" style="padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary)">Medium 121–140 d</button>
+  <button onclick="setF('long')" id="f-long" style="padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary)">Long &gt;140 d</button>
+</div>
+
+<div id="cards-wrap" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-bottom:16px"></div>
+
+<div id="detail-wrap"></div>
+
+<div id="compare-wrap"></div>
+
+<div id="refs-wrap"></div>
+
+</div>
+
+<script>
+var DATA=[
+  {id:"pb1509",name:"PB-1509",full:"Pusa Basmati 1509",dur:"early",days:"115–120",dMin:115,dMax:120,
+   inst:"IARI, New Delhi",yr:2013,ht:"95–100 cm",type:"Semi-dwarf",pp:"Non-sensitive",
+   grain:"8.35 mm",elong:"2.0×",yld:"5.0 t/ha",till:"12–14",pan:"22–24 cm",gwt:"21–22 g",
+   area:"~20% Basmati area",gdd:"1600–1750 °C·d",
+   nur:20,tilD:55,pi:70,boot:88,mat:117,
+   hDAT:"62–68",piDAT:"35–40",tDAT:"30–35",harDAT:"93–99",
+   col:"#1D9E75",bg:"#E1F5EE",tc:"#085041",
+   tags:["Shortest duration","Key forex earner","Non-shattering","Disease susceptible"],
+   note:"At 20 DAT this variety is already at Panicle Initiation while PB-1121 is still at maximum tillering — a critical phenological discriminator for satellite-based variety mapping.",
+   desc:"Developed from PB-1121 × PB-1301. Earliest-maturing notified Basmati. Compact canopy (95–100 cm), ideal for mechanised harvesting. Seed-to-seed maturity 115–120 days.",
+   vrefs:["Singh et al. 2014 — spectral field study, ResearchGate #262873099","CCS HAU field experiment, Kaul 2015","PAU Agronomist communication (pau.edu 2022)"]},
+  {id:"pb1718",name:"PB-1718",full:"Pusa Basmati 1718",dur:"medium",days:"136–138",dMin:136,dMax:138,
+   inst:"IARI, New Delhi",yr:2017,ht:"110–120 cm",type:"Semi-dwarf",pp:"Non-sensitive",
+   grain:"8.1 mm",elong:"2.1×",yld:"4.64 t/ha",till:"18–20",pan:"26–28 cm",gwt:"27–28 g",
+   area:"Growing — replacing PB-1121",gdd:"2100–2250 °C·d",
+   nur:25,tilD:70,pi:90,boot:116,mat:137,
+   hDAT:"86–92",piDAT:"45–55",tDAT:"40–50",harDAT:"111–113",
+   col:"#185FA5",bg:"#E6F1FB",tc:"#0C447C",
+   tags:["BB resistant","Blast resistant","NIL of PB-1121","Non-shattering"],
+   note:"Morphologically near-identical to PB-1121 (it is a NIL). Phenological offset from PB-1509 is ~22–24 days at heading — key temporal window for RS-based separation.",
+   desc:"MAS-derived bacterial blight resistant near-isogenic line of PB-1121. Susceptibility index BB: 2 vs 7.7 in PB-1121. Released 2017 for Punjab, Haryana and Delhi.",
+   vrefs:["Singh et al. 2018, Rice, Springer (NCBI PMC5890003)","IARI ZTM Technology Portal (ztmbpd.iari.res.in)"]},
+  {id:"pb1886",name:"PB-1886",full:"Pusa Basmati 1886",dur:"medium",days:"135–143",dMin:135,dMax:143,
+   inst:"IARI, New Delhi",yr:2021,ht:"95–105 cm",type:"Semi-dwarf",pp:"Non-sensitive",
+   grain:"7.77 mm",elong:"1.96×",yld:"4.8–5.0 t/ha",till:"16–18",pan:"24–26 cm",gwt:"26–27 g",
+   area:"Replacing PB-1401",gdd:"2050–2200 °C·d",
+   nur:25,tilD:70,pi:93,boot:118,mat:140,
+   hDAT:"88–94",piDAT:"45–55",tDAT:"40–50",harDAT:"110–118",
+   col:"#534AB7",bg:"#EEEDFE",tc:"#3C3489",
+   tags:["BB + Blast resistant","NIL of PB-1401","No grain chalkiness","Released 2021"],
+   note:"Dual disease resistance (xa13+Xa21 for bacterial blight; Pi54+Pi2 for blast). Phenologically very close to PB-1401. Cooked kernel elongation 15.21 mm.",
+   desc:"MAS-derived NIL of Pusa Basmati 1401 (PB-6). Semi-dwarf, non-lodging, non-shattering. Seed-to-seed maturity 135–143 days.",
+   vrefs:["APEDA/IARI newly released varieties document (apeda.gov.in)","IARI ZTM Technology Portal (ztmbpd.iari.res.in)"]},
+  {id:"pb1401",name:"PB-1401",full:"Pusa Basmati 1401 (PB-6)",dur:"medium",days:"140–145",dMin:140,dMax:145,
+   inst:"IARI, New Delhi",yr:2008,ht:"100–110 cm",type:"Semi-dwarf",pp:"Non-sensitive",
+   grain:"7.5 mm",elong:"2.0×",yld:"5.0–7.0 t/ha",till:"16–18",pan:"24–26 cm",gwt:"27–28 g",
+   area:"Significant GI belt share",gdd:"2150–2300 °C·d",
+   nur:25,tilD:72,pi:95,boot:120,mat:143,
+   hDAT:"90–95",piDAT:"48–58",tDAT:"45–55",harDAT:"115–120",
+   col:"#BA7517",bg:"#FAEEDA",tc:"#633806",
+   tags:["Lodging tolerant","Chalky grains <4%","Uniform cooked kernel","High yield up to 7 t/ha"],
+   note:"Semi-dwarf, sturdy stem. Improvement over PB-1121 in yield and agronomy. Cooked kernel is uniform-shaped (vs tapering in PB-1121). Yields up to 7 t/ha in farmers' fields.",
+   desc:"Also known as PB-6. Improvement over PB-1121 in yielding ability, agronomy and cooking quality. Released 2008 for Punjab, Haryana, Delhi, Uttarakhand, Western UP.",
+   vrefs:["IARI ZTM Technology Portal (ztmbpd.iari.res.in)","AgriBot variety profile (agri.bot)","ICAR Rice Knowledge Portal"]},
+  {id:"pb1121",name:"PB-1121",full:"Pusa Basmati 1121",dur:"medium",days:"140–145",dMin:140,dMax:145,
+   inst:"IARI, New Delhi",yr:2003,ht:"110–120 cm",type:"Semi-dwarf",pp:"Non-sensitive",
+   grain:"9.00 mm",elong:"2.5×",yld:"5.5 t/ha",till:"18–20",pan:"26–28 cm",gwt:"27–28 g",
+   area:"~70% of total Basmati area",gdd:"2150–2300 °C·d",
+   nur:25,tilD:75,pi:95,boot:120,mat:143,
+   hDAT:"90–97",piDAT:"50–55",tDAT:"45–55",harDAT:"115–120",
+   col:"#D85A30",bg:"#FAECE7",tc:"#712B13",
+   tags:["World's longest grain (9 mm)","~70% of Basmati area","RS benchmark variety","Disease susceptible"],
+   note:"Still at maximum tillering when PB-1509 has already reached Panicle Initiation. Panicle length 26–28 cm gives distinct SAR backscatter signature post-heading. World record cooked kernel elongation 2.7× (Limca Book 2018).",
+   desc:"Benchmark Basmati variety — ~70% of Indian Basmati area as of 2016. Extra-long slender grains 9.00 mm, kernel elongation ratio 2.5. Cumulative forex earnings $20.8B since 2008.",
+   vrefs:["Singh et al. 2018, Rice, Springer (NCBI PMC5890003)","Gupta et al. 2017, IJCMAS 6(3), CCS HAU","CCS HAU Kaul field study 2015 (ResearchGate #316623004)","Limca Book of Records 2018"]},
+  {id:"pb1",name:"PB-1",full:"Pusa Basmati 1",dur:"long",days:"135–145",dMin:135,dMax:145,
+   inst:"IARI, New Delhi",yr:1989,ht:"110–120 cm",type:"Semi-dwarf",pp:"Non-sensitive",
+   grain:"8.0 mm",elong:"2.0×",yld:"4.5 t/ha",till:"14–16",pan:"24–26 cm",gwt:"24–25 g",
+   area:"~10% (~0.16 mha)",gdd:"2050–2200 °C·d",
+   nur:25,tilD:72,pi:93,boot:118,mat:141,
+   hDAT:"88–93",piDAT:"48–55",tDAT:"45–50",harDAT:"110–120",
+   col:"#D4537E",bg:"#FBEAF0",tc:"#72243E",
+   tags:["Parent of PB-1121 lineage","Quality donor variety","~0.16 mha still cultivated","Blast susceptible"],
+   note:"Reaches 50% heading earlier than CSR-30 (confirmed CCS HAU field experiments). Semi-dwarf canopy clearly separable from tall CSR-30 in canopy height models.",
+   desc:"Landmark improved Basmati, still grown on ~0.16 mha (~10% of GI Basmati area). Parent variety for PB-1121, PB-1401 and PB-1509 lineage. Released 1989.",
+   vrefs:["CCS HAU transplanting date experiment (ResearchGate #323589185)","Siddiq et al. 2012 pedigree study (ResearchGate #257808262)","NCBI PMC5896403 — marker-assisted improvement of PB1"]},
+  {id:"csr30",name:"CSR-30",full:"CSR-30 (Yamini)",dur:"long",days:"~150",dMin:148,dMax:155,
+   inst:"CSSRI, Karnal",yr:1996,ht:"155–170 cm",type:"Tall (traditional)",pp:"Photoperiod sensitive",
+   grain:"~7.5 mm (super-fine)",elong:"1.9×",yld:"4.0–5.5 t/ha",till:"12–15",pan:"22–25 cm",gwt:"22–24 g",
+   area:"~60% Basmati area in Haryana",gdd:"2400–2600 °C·d",
+   nur:30,tilD:82,pi:105,boot:132,mat:152,
+   hDAT:"95–105",piDAT:"52–62",tDAT:"45–60",harDAT:"120–125",
+   col:"#5F5E5A",bg:"#F1EFE8",tc:"#444441",salt:true,
+   tags:["Salt tolerant ECe ≤11 dS/m","Photoperiod sensitive","Tallest variety 155–170 cm","Sodic soils","Lodging risk"],
+   note:"Critical RS discriminator: tallest variety (155–170 cm) is distinctly separable from all semi-dwarf varieties (95–120 cm) in canopy height models and InSAR. Heading is significantly delayed under long-day transplanting.",
+   desc:"First Basmati variety bred for salt and sodic soils. ~60% of Basmati cultivation area in Haryana. Salt tolerance up to ECe 11 dS/m, sodicity tolerance pH up to 9.5.",
+   vrefs:["ICAR Rice Knowledge Portal — Yamini CSR-30 (riceportal.in)","ICAR-CSSRI success story (icar.org.in/node/2084)","FAO AGRIS record IN2022013762","Gupta et al. 2017, IJCMAS 6(3)"]}
+];
+
+var ALL_REFS=[
+  {n:1,auth:"Singh et al. (2018)",title:"Pusa Basmati 1121 — a rice variety with exceptional kernel elongation and volume expansion after cooking.",journal:"Rice, Springer Nature",detail:"NCBI PMC5890003. doi:10.1186/s12284-018-0213-6"},
+  {n:2,auth:"Gupta et al. (2017)",title:"Agrometeorological indices and phenology of Basmati rice under different dates of transplanting.",journal:"IJCMAS 6(3)",detail:"CCS Haryana Agricultural University, Rice Research Station, Kaul. IJCMAS abstractview ID 1618."},
+  {n:3,auth:"CCS HAU Kaul field study (2015–16)",title:"Growth and radiation use efficiency of Basmati rice varieties under different transplanting environments.",journal:"ResearchGate",detail:"Publication #316623004. Varieties: CSR-30, HB-2, PB-1121, PB-1509. Phenophase tables provided."},
+  {n:4,auth:"Singh et al. (2014)",title:"Variety Pusa Basmati 1509 — spectral study showing PB-1509 at PI when PB-1121 at max tillering.",journal:"ResearchGate",detail:"Publication #262873099. Key finding used for RS phenological discrimination."},
+  {n:5,auth:"IARI ZTM Technology Portal",title:"Rice variety profiles — PB-1509, PB-1718, PB-1886, PB-1401, PB-1.",journal:"ICAR-IARI Official",detail:"ztmbpd.iari.res.in/technologies/varietieshybrids/cereals/rice/ (accessed 2024)."},
+  {n:6,auth:"APEDA / IARI (2021)",title:"Detail of newly released Basmati varieties (PB-1885, PB-1886, PB-1847, PB-1692).",journal:"APEDA Official Document",detail:"apeda.gov.in/sites/default/files/product/NEWLY_RELEASED_BASMATI_VARIETIES.pdf"},
+  {n:7,auth:"ICAR Rice Knowledge Portal",title:"Yamini CSR-30 — 150 d maturity, tall, super-fine grain, photoperiod sensitive.",journal:"ICAR-RKMP",detail:"riceportal.in/content/yamini-csr-30. Confirms 150 d maturity and salt tolerance specifications."},
+  {n:8,auth:"ICAR-CSSRI (2023)",title:"Economic empowerment through salt tolerant Basmati rice variety CSR-30.",journal:"ICAR Success Story",detail:"icar.org.in/node/2084. CSSRI Karnal, Haryana. ~60% Basmati area in Haryana under CSR-30."},
+  {n:9,auth:"Punjab Agricultural University (2022)",title:"Short duration Basmati varieties — PB-1509 matures ~95 DAT, PB-1847 ~99 DAT.",journal:"PAU Agronomy Communication",detail:"pau.edu/index.php event ID 8964. Dr Buta Singh Dhillon, Agronomist (Rice)."},
+  {n:10,auth:"Siddiq et al. (2012)",title:"CSR-30 derived from Pakistan Basmati cross; pedigree and varietal origins.",journal:"Cited in ResearchGate #257808262",detail:"Pedigree of Pusa Basmati-1 and derived varieties diagram."},
+  {n:11,auth:"Limca Book of Records (2018)",title:"PB-1121 holds world record for cooked kernel elongation — 2.7× raw kernel, cooked length 21.5 mm.",journal:"Limca Book of Records",detail:"Cited in Singh et al. 2018 (PMC5890003)."}
+];
+
+var SEL="pb1121", FILTER="all";
+var MAX=160;
+
+function tBar(v,h){
+  var segs=[
+    {s:0,e:v.nur,c:"#9FE1CB"},
+    {s:v.nur,e:v.tilD,c:"#85B7EB"},
+    {s:v.tilD,e:v.pi,c:"#AFA9EC"},
+    {s:v.pi,e:v.boot,c:"#534AB7"},
+    {s:v.boot,e:v.mat,c:"#F0997B"}
+  ];
+  var o="";
+  segs.forEach(function(sg){
+    var l=(sg.s/MAX*100).toFixed(1),w=((sg.e-sg.s)/MAX*100).toFixed(1);
+    o+='<div style="position:absolute;left:'+l+'%;width:'+w+'%;height:'+h+'px;top:0;background:'+sg.c+'"></div>';
+  });
+  var hp=(v.boot/MAX*100).toFixed(1),mp=(v.mat/MAX*100).toFixed(1);
+  o+='<div style="position:absolute;left:'+hp+'%;top:-3px;width:3px;height:'+(h+6)+'px;background:#26215C"></div>';
+  o+='<div style="position:absolute;left:'+mp+'%;top:-3px;width:3px;height:'+(h+6)+'px;background:#993C1D"></div>';
+  return o;
+}
+
+function durBadge(d){
+  if(d==="early") return '<span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#E1F5EE;color:#085041">Early</span>';
+  if(d==="medium") return '<span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#E6F1FB;color:#0C447C">Medium</span>';
+  return '<span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#FAEEDA;color:#633806">Long</span>';
+}
+
+function renderCards(){
+  var list=DATA.filter(function(v){return FILTER==="all"||v.dur===FILTER;});
+  var o='';
+  list.forEach(function(v){
+    var a=SEL===v.id;
+    o+='<div onclick="selV(\''+v.id+'\')" style="cursor:pointer;background:'+(a?v.bg:'var(--color-background-primary)')+';border-radius:12px;border:'+(a?'2px solid '+v.col:'0.5px solid var(--color-border-tertiary)')+';padding:14px">'
+      +'<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">'
+      +'<div><div style="font-size:15px;font-weight:500;color:var(--color-text-primary)">'+v.name+'</div>'
+      +'<div style="font-size:11px;color:var(--color-text-secondary);margin-top:1px">'+v.inst+'</div></div>'
+      +'<div style="display:flex;flex-direction:column;gap:3px;align-items:flex-end">'+durBadge(v.dur)
+      +(v.salt?'<span style="font-size:10px;padding:2px 8px;border-radius:10px;background:#EAF3DE;color:#3B6D11">Salt tolerant</span>':'')
+      +'</div></div>'
+      +'<div style="position:relative;height:12px;background:var(--color-background-secondary);border-radius:6px;overflow:visible;margin-bottom:8px">'+tBar(v,12)+'</div>'
+      +'<div style="display:flex;justify-content:space-between;font-size:12px;font-weight:500;color:'+v.col+';margin-bottom:5px">'
+      +'<span>'+v.days+' days</span><span>'+v.ht+'</span></div>'
+      +'<div style="font-size:11px;color:var(--color-text-secondary)">Grain: '+v.grain+' · Yield: '+v.yld+'</div>'
+      +'</div>';
+  });
+  document.getElementById('cards-wrap').innerHTML=o;
+}
+
+function renderDetail(){
+  var v=DATA.find(function(x){return x.id===SEL;});
+  if(!v){document.getElementById('detail-wrap').innerHTML='';return;}
+
+  var phRows=[
+    ["Nursery sowing","Day 0","Seed germination in seedbed","#9FE1CB"],
+    ["Transplanting","Day "+v.nur,"Seedlings moved to puddled main field","#85B7EB"],
+    ["Max tillering",v.tDAT+" DAT","Maximum vegetative / tiller production","#85B7EB"],
+    ["Panicle initiation (PI)",v.piDAT+" DAT","Floral differentiation begins","#AFA9EC"],
+    ["50% heading",v.hDAT+" DAT","Panicle emergence from flag leaf sheath","#534AB7"],
+    ["Physiological maturity",v.harDAT+" DAT","Grain moisture ~20–22%, ready for harvest","#993C1D"]
+  ];
+
+  var params=[
+    {l:"Plant height",v:v.ht,bg:"#E1F5EE",tc:"#085041"},
+    {l:"Growth type",v:v.type,bg:"#E1F5EE",tc:"#085041"},
+    {l:"Photoperiod",v:v.pp,bg:"#E1F5EE",tc:"#085041"},
+    {l:"Grain length",v:v.grain,bg:"#EAF3DE",tc:"#3B6D11"},
+    {l:"Kernel elongation",v:v.elong,bg:"#EAF3DE",tc:"#3B6D11"},
+    {l:"Yield potential",v:v.yld,bg:"#EAF3DE",tc:"#3B6D11"},
+    {l:"Tillers/plant",v:v.till,bg:"#FAEEDA",tc:"#633806"},
+    {l:"Panicle length",v:v.pan,bg:"#FAEEDA",tc:"#633806"},
+    {l:"1000-grain wt",v:v.gwt,bg:"#FAEEDA",tc:"#633806"},
+    {l:"Thermal req.",v:v.gdd,bg:"#E6F1FB",tc:"#0C447C"},
+    {l:"Cultivation area",v:v.area,bg:"#E6F1FB",tc:"#0C447C"},
+    {l:"Year released",v:v.yr,bg:"#EEEDFE",tc:"#3C3489"}
+  ];
+
+  var html='<div style="background:var(--color-background-primary);border-radius:12px;border:0.5px solid var(--color-border-tertiary);overflow:hidden;margin-bottom:14px">'
+
+    +'<div style="background:'+v.bg+';padding:18px 20px;border-bottom:0.5px solid var(--color-border-tertiary)">'
+    +'<div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px">'
+    +'<div>'
+    +'<div style="font-size:11px;font-weight:500;color:'+v.col+';text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Selected variety — full phenology profile</div>'
+    +'<div style="font-size:20px;font-weight:500;color:'+v.tc+'">'+v.full+'</div>'
+    +'<div style="font-size:12px;color:'+v.col+';margin-top:3px">'+v.inst+' · Released '+v.yr+'</div>'
+    +'</div>'
+    +'<div style="background:'+v.col+';border-radius:20px;padding:6px 16px;text-align:center">'
+    +'<div style="font-size:16px;font-weight:500;color:#fff">'+v.days+' d</div>'
+    +'<div style="font-size:10px;color:rgba(255,255,255,0.8)">seed to seed</div>'
+    +'</div></div>'
+    +'<div style="font-size:13px;color:'+v.tc+';line-height:1.6;margin-top:10px">'+v.desc+'</div>'
+    +'</div>'
+
+    +'<div style="padding:18px 20px">'
+
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Growth stage timeline (days from seed sowing)</div>'
+    +'<div style="position:relative;height:28px;background:var(--color-background-secondary);border-radius:6px;overflow:visible;margin-bottom:4px">'+tBar(v,28)+'</div>'
+    +'<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--color-text-tertiary);margin-bottom:18px;padding:0 1px">';
+  [0,20,40,60,80,100,120,140,160].forEach(function(d){html+='<span>'+d+'d</span>';});
+  html+='</div>'
+
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Phenophase calendar</div>'
+    +'<div style="border:0.5px solid var(--color-border-tertiary);border-radius:8px;overflow:hidden;margin-bottom:18px">'
+    +'<div style="display:grid;grid-template-columns:1.3fr 1fr 2fr;background:var(--color-background-secondary);padding:8px 12px">'
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary)">Stage</div>'
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary)">Timing</div>'
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary)">Field notes</div>'
+    +'</div>';
+  phRows.forEach(function(r){
+    html+='<div style="display:grid;grid-template-columns:1.3fr 1fr 2fr;padding:9px 12px;border-top:0.5px solid var(--color-border-tertiary)">'
+      +'<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-primary)">'
+      +'<div style="width:9px;height:9px;border-radius:50%;background:'+r[3]+';flex-shrink:0"></div>'+r[0]+'</div>'
+      +'<div style="font-size:12px;font-weight:500;color:'+r[3]+'">'+r[1]+'</div>'
+      +'<div style="font-size:12px;color:var(--color-text-secondary)">'+r[2]+'</div>'
+      +'</div>';
+  });
+  html+='</div>'
+
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Agromorphological parameters</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:18px">';
+  params.forEach(function(p){
+    html+='<div style="background:'+p.bg+';border-radius:8px;padding:9px 11px">'
+      +'<div style="font-size:10px;color:'+p.tc+';opacity:0.8;margin-bottom:3px">'+p.l+'</div>'
+      +'<div style="font-size:13px;font-weight:500;color:'+p.tc+'">'+p.v+'</div>'
+      +'</div>';
+  });
+  html+='</div>'
+
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Trait tags</div>'
+    +'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px">';
+  v.tags.forEach(function(t){
+    html+='<span style="font-size:11px;padding:4px 11px;border-radius:12px;background:'+v.bg+';color:'+v.tc+';border:0.5px solid '+v.col+'">'+t+'</span>';
+  });
+  html+='</div>'
+
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">RS classification note</div>'
+    +'<div style="font-size:13px;color:'+v.tc+';line-height:1.6;padding:12px 16px;background:'+v.bg+';border-radius:8px;border-left:3px solid '+v.col+';margin-bottom:18px">'+v.note+'</div>'
+
+    +'<div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Key references for this variety</div>'
+    +'<div style="background:var(--color-background-secondary);border-radius:8px;padding:10px 14px;margin-bottom:14px">';
+  v.vrefs.forEach(function(r,i){
+    html+='<div style="display:flex;gap:8px;padding:4px 0;font-size:12px;color:var(--color-text-secondary)">'
+      +'<span style="color:'+v.col+';font-weight:500;flex-shrink:0">['+( i+1 )+']</span>'+r+'</div>';
+  });
+  html+='</div>'
+    +'<button onclick="sendPrompt(\'For '+v.full+': what are the best Sentinel-1 and Sentinel-2 observation dates to classify it from other Basmati varieties in the GI belt based on its phenology?\')" style="font-size:12px;padding:8px 18px;border-radius:8px;border:0.5px solid '+v.col+';background:'+v.bg+';color:'+v.tc+';cursor:pointer">Ask RS classification strategy ↗</button>'
+    +'</div></div>';
+
+  document.getElementById('detail-wrap').innerHTML=html;
+}
+
+function renderCompare(){
+  var o='<div style="background:var(--color-background-primary);border-radius:12px;border:0.5px solid var(--color-border-tertiary);padding:18px;margin-bottom:14px">'
+    +'<div style="font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Duration comparison — all 7 varieties</div>'
+    +'<div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:14px">Click any row to view its full phenology profile</div>';
+  DATA.forEach(function(v){
+    var a=SEL===v.id;
+    o+='<div onclick="selV(\''+v.id+'\')" style="cursor:pointer;display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:5px 8px;border-radius:7px;background:'+(a?v.bg:'transparent')+'">'
+      +'<div style="min-width:70px;font-size:12px;font-weight:'+(a?'500':'400')+';color:'+(a?v.col:'var(--color-text-secondary)')+'">'+v.name+'</div>'
+      +'<div style="flex:1;position:relative;height:18px;background:var(--color-background-secondary);border-radius:4px;overflow:visible">'+tBar(v,18)+'</div>'
+      +'<div style="min-width:56px;font-size:11px;color:'+(a?v.col:'var(--color-text-secondary)')+';text-align:right">'+v.days+' d</div>'
+      +'</div>';
+  });
+  o+='<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--color-text-tertiary);padding:2px 80px 0 80px">';
+  [0,20,40,60,80,100,120,140,160].forEach(function(d){o+='<span>'+d+'d</span>';});
+  o+='</div></div>';
+  document.getElementById('compare-wrap').innerHTML=o;
+}
+
+function renderRefs(){
+  var o='<div style="background:var(--color-background-primary);border-radius:12px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">'
+    +'<div style="background:#0C447C;padding:16px 20px">'
+    +'<div style="font-size:16px;font-weight:500;color:#fff">References &amp; sources</div>'
+    +'<div style="font-size:12px;color:#85B7EB;margin-top:3px">All phenology data derived from peer-reviewed research, ICAR/IARI official publications, and replicated field experiments</div>'
+    +'</div>'
+    +'<div style="padding:4px 0">';
+  ALL_REFS.forEach(function(r){
+    o+='<div style="display:flex;gap:12px;padding:12px 20px;border-bottom:0.5px solid var(--color-border-tertiary)">'
+      +'<div style="min-width:26px;height:26px;border-radius:50%;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#0C447C;flex-shrink:0">'+r.n+'</div>'
+      +'<div>'
+      +'<div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">'+r.auth+'</div>'
+      +'<div style="font-size:12px;color:var(--color-text-primary);margin-top:1px">'+r.title+'</div>'
+      +'<div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px"><span style="color:#185FA5;font-weight:500">'+r.journal+'</span> — '+r.detail+'</div>'
+      +'</div></div>';
+  });
+  o+='</div></div>';
+  document.getElementById('refs-wrap').innerHTML=o;
+}
+
+function render(){renderCards();renderDetail();renderCompare();renderRefs();}
+
+window.setF=function(f){
+  FILTER=f;
+  ['all','early','medium','long'].forEach(function(x){
+    var b=document.getElementById('f-'+x);
+    if(!b) return;
+    var a=x===f;
+    b.style.background=a?'#E6F1FB':'transparent';
+    b.style.color=a?'#0C447C':'var(--color-text-secondary)';
+    b.style.borderColor=a?'#185FA5':'var(--color-border-secondary)';
+  });
+  render();
+};
+window.selV=function(id){SEL=id;render();};
+render();
+</script>
