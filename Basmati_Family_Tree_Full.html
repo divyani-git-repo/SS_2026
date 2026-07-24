@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Basmati Family Tree — All Notified Varieties</title>
+<style>
+  :root{
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #F5F6F8;
+    --color-text-primary: #20262E;
+    --color-text-secondary: #5B6472;
+    --color-text-tertiary: #9AA3AF;
+    --color-border-secondary: #E2E5E9;
+    --color-border-tertiary: #E9EBEE;
+  }
+  body{margin:0;background:var(--color-background-secondary);font-family:var(--font-sans);}
+  .tree, .tree ul{list-style:none;margin:0;padding-left:30px;}
+  .tree{padding-left:0;}
+  .tree li{position:relative;padding:7px 0 7px 26px;}
+  .tree > li{padding-left:0;}
+  .tree ul li::before{content:'';position:absolute;left:0;top:0;bottom:0;border-left:1.5px solid #C7CBCF;}
+  .tree ul li::after{content:'';position:absolute;left:0;top:27px;width:18px;height:0;border-top:1.5px solid #C7CBCF;}
+  .tree ul li:last-child::before{height:27px;}
+  .node{display:inline-flex;flex-direction:column;gap:1px;padding:7px 13px;border-radius:8px;border-width:1px;border-style:solid;font-size:12.5px;line-height:1.35;}
+  .node .lbl{font-weight:600;}
+  .node .sub{font-size:10.5px;opacity:0.75;font-weight:400;}
+</style>
+</head>
+<body>
+<div style="max-width:1080px;margin:0 auto;padding:22px 20px 60px">
+
+  <div style="background:#1D9E75;border-radius:12px;padding:20px 24px;margin-bottom:16px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-size:22px;font-weight:500;color:#fff">Full Basmati Family Tree — All Notified Varieties</div>
+        <div style="font-size:13px;color:#9FE1CB;margin-top:4px">Complete breeding lineage across the Seeds Act, 1966 notified list · grouped by breeding programme</div>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+          <span style="font-size:11px;padding:3px 10px;border-radius:10px;background:rgba(255,255,255,0.2);color:#fff">Source: ICAR · ICAR-IARI ZTM&amp;BPD · APEDA · AIREA-IARI-APEDA meet 2012</span>
+        </div>
+      </div>
+      <a href="./Basmati_Phenology_Dashboard.html" style="font-size:12px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.18);color:#fff;text-decoration:none;white-space:nowrap">← Back to phenology dashboard</a>
+    </div>
+  </div>
+
+  <div style="background:var(--color-background-primary);border-radius:10px;padding:10px 14px;margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;border:0.5px solid var(--color-border-tertiary)">
+    <span style="font-size:11px;font-weight:500;color:var(--color-text-secondary)">LEGEND — breeding family:</span>
+    <span class="node" style="border-color:#5F5E5A;background:#F1EFE8;color:#444441;padding:4px 10px;font-size:11px">Traditional / landrace</span>
+    <span class="node" style="border-color:#D4537E;background:#FBEAF0;color:#72243E;padding:4px 10px;font-size:11px">Pusa Basmati 1 lineage</span>
+    <span class="node" style="border-color:#D85A30;background:#FAECE7;color:#712B13;padding:4px 10px;font-size:11px">Pusa Basmati 1121 lineage</span>
+    <span class="node" style="border-color:#1D9E75;background:#E1F5EE;color:#085041;padding:4px 10px;font-size:11px">Pusa Basmati 1509 sub-lineage</span>
+    <span class="node" style="border-color:#BA7517;background:#FAEEDA;color:#633806;padding:4px 10px;font-size:11px">Pusa Basmati 6/1401 sub-lineage</span>
+    <span class="node" style="border-color:#8E44AD;background:#F3E9F7;color:#5B2A6E;padding:4px 10px;font-size:11px">Pusa Sugandh / hybrid-parent lineage</span>
+    <span class="node" style="border-color:#185FA5;background:#E6F1FB;color:#0C447C;padding:4px 10px;font-size:11px">State / university-bred (independent)</span>
+  </div>
+
+  <div style="background:var(--color-background-primary);border-radius:12px;border:0.5px solid var(--color-border-tertiary);padding:22px 26px 26px;margin-bottom:16px">
+    <div id="tree-root"></div>
+  </div>
+
+  <div style="background:var(--color-background-primary);border-radius:12px;border:0.5px solid var(--color-border-tertiary);padding:16px 20px;font-size:11.5px;color:var(--color-text-secondary);line-height:1.6">
+    <b style="color:var(--color-text-primary)">Notes &amp; sources:</b> Compiled from ICAR (icar.org.in — Crop Science / Basmati Rice Varieties), ICAR-IARI ZTM&amp;BPD (ztmbpd.iari.res.in — Rice varieties/hybrids), APEDA (apeda.gov.in/BasmatiRice and the official PDF "Detail of Newly Released Basmati Varieties", 12-Mar-2025), APEDA/BEDF (apeda.gov.in/bedf), and a joint AIREA-IARI-APEDA interactive-meeting record (23-Apr-2012) for older gazette notification numbers. AIREA does not publish its own standalone pedigree document; its Basmati content is presented jointly with IARI/APEDA.
+    State/university clusters (Punjab Basmati, Haryana Basmati, Pant Basmati, Vallabh Basmati, Jammu Basmati series etc.) are bred independently of the IARI-Pusa programme and are not genetic descendants of Pusa Basmati 1 or 1121 — grouped here for completeness of the notified list, not lineage.
+    Exact gazette notification numbers for several post-2012 varieties were not found published in full on these three sites; cross-check against egazette.gov.in before using in a formal submission.
+  </div>
+
+</div>
+
+<script>
+var FCOL={
+  traditional:{col:"#5F5E5A",bg:"#F1EFE8",tc:"#444441"},
+  pb1:{col:"#D4537E",bg:"#FBEAF0",tc:"#72243E"},
+  pb1121:{col:"#D85A30",bg:"#FAECE7",tc:"#712B13"},
+  pb1509:{col:"#1D9E75",bg:"#E1F5EE",tc:"#085041"},
+  pb1401:{col:"#BA7517",bg:"#FAEEDA",tc:"#633806"},
+  sugandh:{col:"#8E44AD",bg:"#F3E9F7",tc:"#5B2A6E"},
+  independent:{col:"#5F5E5A",bg:"#F1EFE8",tc:"#444441"},
+  state:{col:"#185FA5",bg:"#E6F1FB",tc:"#0C447C"}
+};
+
+var TREE={
+  label:"Basmati (root stock)",
+  sub:"All notified varieties trace to Himalayan-foothill landraces",
+  family:"traditional",
+  children:[
+    {label:"Basmati 370",sub:"Traditional landrace · notified 1973/1976 · root of PB-1 & PB-1121",family:"traditional"},
+    {label:"Type 3 (Dehraduni Basmati)",sub:"Traditional landrace · notified 1978",family:"traditional"},
+    {label:"Basmati 217",sub:"Traditional landrace · notified 1969/1973",family:"traditional"},
+    {label:"Basmati 386",sub:"Traditional landrace · notified 1997",family:"traditional"},
+    {label:"Taraori Basmati / Karnal Local (HBC 19)",sub:"CCS HAU Hisar · notified 1996 · independent traditional selection",family:"traditional"},
+    {label:"Pusa Basmati 1",sub:"ICAR-IARI · 1989 · first semi-dwarf Basmati",family:"pb1",children:[
+      {label:"Improved Pusa Basmati 1 (Pusa 1460)",sub:"IARI · MAS bacterial-blight-resistant NIL of PB-1",family:"pb1"},
+      {label:"Pusa Basmati 1637",sub:"IARI · blast-resistant NIL of PB-1",family:"pb1"}
+    ]},
+    {label:"Pusa Basmati 1121",sub:"ICAR-IARI · 2003/2008 · via Pusa 614 (Basmati 370×Type 3) · ~70% Basmati area",family:"pb1121",children:[
+      {label:"Pusa Basmati 1509",sub:"IARI · early-maturing modified version of PB-1121",family:"pb1509",children:[
+        {label:"Pusa Basmati 1692",sub:"IARI · pedigree-improved, blast tolerant",family:"pb1509"},
+        {label:"Pusa Basmati 1847",sub:"IARI · MAS NIL, BB + blast resistant",family:"pb1509"},
+        {label:"Pusa Basmati 1985",sub:"IARI · MAS NIL, herbicide (Imazethapyr) tolerant",family:"pb1509"}
+      ]},
+      {label:"Pusa Basmati 1718",sub:"IARI · MAS NIL, bacterial blight resistant",family:"pb1121"},
+      {label:"Pusa Basmati 1728",sub:"IARI · MAS, BB resistant (xa13, Xa21)",family:"pb1121"},
+      {label:"Pusa Basmati 1885",sub:"IARI · MAS NIL, BB + blast resistant",family:"pb1121"},
+      {label:"Pusa Basmati 1979",sub:"IARI · MAS NIL, herbicide (Imazethapyr) tolerant",family:"pb1121"},
+      {label:"Pusa Basmati 6 (Pusa 1401)",sub:"IARI · 2008 · agronomic/yield improvement of PB-1121",family:"pb1401",children:[
+        {label:"Pusa Basmati 1886",sub:"IARI · MAS NIL, BB + blast resistant",family:"pb1401"}
+      ]}
+    ]},
+    {label:"PRR78 (Basmati hybrid restorer line)",sub:"Hybrid-rice restorer breeding programme, ICAR-IARI — separate from the PB-1121/PB-1401 pedigree line",family:"sugandh",children:[
+      {label:"Pusa Basmati 1609",sub:"IARI · Piz5+Pi54 pyramided blast resistance · first pyramided-resistance Basmati",family:"sugandh"}
+    ]},
+    {label:"Pusa 3A (CMS line) × Haryana Basmati 1",sub:"Hybrid-parent breeding programme, ICAR-IARI",family:"sugandh",children:[
+      {label:"Pusa Sugandh 2",sub:"IARI · 2001",family:"sugandh",children:[
+        {label:"Pusa RH10",sub:"IARI · Pusa Sugandh 2 × Pusa 6A (CMS) · first aromatic superfine hybrid",family:"sugandh"}
+      ]},
+      {label:"Pusa Sugandh 3",sub:"IARI · 2001",family:"sugandh"},
+      {label:"Pusa Sugandh 5",sub:"IARI · 2005",family:"sugandh"}
+    ]},
+    {label:"CSR 30 (Yamini)",sub:"ICAR-CSSRI Karnal · 1996 · independent salt-tolerant line (Pakistan Basmati cross)",family:"independent"},
+    {label:"State / university-bred (independently notified)",sub:"Not part of the IARI-Pusa breeding programme",family:"state",children:[
+      {label:"Punjab Basmati 1–7",sub:"PAU Ludhiana",family:"state"},
+      {label:"Haryana Basmati 1–2",sub:"CCS HAU Hisar",family:"state"},
+      {label:"Pant Basmati 1–2",sub:"GBPUAT Pantnagar",family:"state"},
+      {label:"Vallabh Basmati 21–24",sub:"GBPUAT Pantnagar",family:"state"},
+      {label:"Jammu Basmati 118, 123, 129, 138",sub:"SKUAST Jammu",family:"state"},
+      {label:"Malviya Basmati Dhan 10-9",sub:"BHU Varanasi",family:"state"},
+      {label:"Ranbir Basmati",sub:"SKUAST Jammu",family:"state"},
+      {label:"Mahi Sugandha",sub:"State-bred",family:"state"},
+      {label:"Kasturi",sub:"Traditional-derived, state-bred",family:"state"},
+      {label:"Basmati CSR 30 lineage note",sub:"See independent CSR-30 branch above — not part of this cluster",family:"state"}
+    ]}
+  ]
+};
+
+function nodeHtml(n){
+  var c=FCOL[n.family]||FCOL.state;
+  return '<span class="node" style="border-color:'+c.col+';background:'+c.bg+';color:'+c.tc+'">'
+    +'<span class="lbl">'+n.label+'</span>'
+    +'<span class="sub">'+n.sub+'</span>'
+    +'</span>';
+}
+
+function renderNode(n){
+  var html=nodeHtml(n);
+  if(n.children&&n.children.length){
+    html+='<ul>';
+    n.children.forEach(function(c){html+='<li>'+renderNode(c)+'</li>';});
+    html+='</ul>';
+  }
+  return html;
+}
+
+document.getElementById('tree-root').innerHTML='<ul class="tree"><li style="list-style:none;padding-left:0">'+renderNode(TREE)+'</li></ul>';
+</script>
+</body>
+</html>
