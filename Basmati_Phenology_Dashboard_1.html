@@ -1,4 +1,3 @@
-
 <div style="font-family:var(--font-sans);padding-bottom:2rem">
 
 <div style="background:#1D9E75;border-radius:12px;padding:20px 24px;margin-bottom:16px">
@@ -395,7 +394,6 @@ function renderDetail(){
       +'<span style="color:'+v.col+';font-weight:500;flex-shrink:0">['+( i+1 )+']</span>'+r+'</div>';
   });
   html+='</div>'
-    +'<button onclick="sendPrompt(\'For '+v.full+': what are the best Sentinel-1 and Sentinel-2 observation dates to classify it from other Basmati varieties in the GI belt based on its phenology?\')" style="font-size:12px;padding:8px 18px;border-radius:8px;border:0.5px solid '+v.col+';background:'+v.bg+';color:'+v.tc+';cursor:pointer">Ask RS classification strategy ↗</button>'
     +'</div></div>';
 
   document.getElementById('detail-wrap').innerHTML=html;
@@ -526,6 +524,22 @@ function renderFamilyTree(){
     +svg
     +'</div>';
   document.getElementById('tree-wrap').innerHTML=html;
+}
+
+function copyRSQuestion(btn,fullName){
+  var q='For '+fullName+': what are the best Sentinel-1 and Sentinel-2 observation dates to classify it from other Basmati varieties in the GI belt based on its phenology?';
+  var done=function(){
+    var orig=btn.textContent;
+    btn.textContent='Copied ✓ — paste into chat';
+    setTimeout(function(){btn.textContent=orig;},2200);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(q).then(done).catch(function(){
+      window.prompt('Copy this question:',q);
+    });
+  } else {
+    window.prompt('Copy this question:',q);
+  }
 }
 
 function render(){renderCards();renderDetail();renderFamilyTree();renderCompare();renderRefs();}
