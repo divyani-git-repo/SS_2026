@@ -526,22 +526,6 @@ function renderFamilyTree(){
   document.getElementById('tree-wrap').innerHTML=html;
 }
 
-function copyRSQuestion(btn,fullName){
-  var q='For '+fullName+': what are the best Sentinel-1 and Sentinel-2 observation dates to classify it from other Basmati varieties in the GI belt based on its phenology?';
-  var done=function(){
-    var orig=btn.textContent;
-    btn.textContent='Copied ✓ — paste into chat';
-    setTimeout(function(){btn.textContent=orig;},2200);
-  };
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(q).then(done).catch(function(){
-      window.prompt('Copy this question:',q);
-    });
-  } else {
-    window.prompt('Copy this question:',q);
-  }
-}
-
 function render(){renderCards();renderDetail();renderFamilyTree();renderCompare();renderRefs();}
 
 window.setF=function(f){
